@@ -1,0 +1,1132 @@
+{
+	"info": {
+		"_postman_id": "af954b9b-a192-4ca1-9f26-aa15daa07bb2",
+		"name": "Monetha",
+		"description": "pm.environment.set(\"url\", \"https://api.monetha.io\");\n\npm.environment.set(\"Authorization\", \"\");",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users/verify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"country_code\": \"370\",\r\n    \"country_code_iso\": \"LT\",\r\n    \"device_id\": \"string\",\r\n    \"device_os\": \"android\",\r\n    \"language_code\": \"lt\",\r\n    \"phone_number\": \"your_phone_number\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/users/verify",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"users",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/signin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\r\n    \"verification_code\": \"\",\r\n    \"verification_token\": \"\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/users/signin",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef8e8daa-8da4-43fe-ba38-bf385243abf6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"var firstName = pm.environment.get(\"firstName\");",
+							"            ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.first_name).to.eql(firstName);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"action\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.action_pts).to.eql(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/users/profile",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef8e8daa-8da4-43fe-ba38-bf385243abf6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"var firstName = pm.environment.get(\"firstName\");",
+							"            ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.first_name).to.eql(firstName);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"action\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.action_pts).to.eql(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/mth/v1/deals/8439",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals",
+						"8439"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update/profile",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0b904455-155a-41e3-a4d2-a37b916d91c6",
+						"exec": [
+							"var name = 'dfngksdlgjggfgfgf'\r",
+							"var address = create(30, '        BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');\r",
+							"var firstName   = create(7, name);\r",
+							"var lastName    = create(15, name);\r",
+							"\r",
+							"pm.environment.set(\"address\", address);\r",
+							"pm.environment.set(\"firstName\", firstName);\r",
+							"pm.environment.set(\"lastName\", lastName);\r",
+							"\r",
+							"function create(length, characters) {\r",
+							"   var result           = '';\r",
+							"   var charactersLength = characters.length;\r",
+							"   for ( var i = 0; i < length; i++ ) {\r",
+							"      result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+							"   }\r",
+							"   return result;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"address\": \"{{address}}\",\r\n\"country_code_iso\": \"LT\",\r\n\"email\": \"user@example.com\",\r\n\"fb_id\": \"string\",\r\n\"first_name\": \"{{firstName}}\",\r\n\"language_code\": \"st\",\r\n\"last_name\": \"{{lastName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/users/profile",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"users",
+						"profile"
+					]
+				},
+				"description": "qq"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deals",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b62d0af-23cb-4a57-a7cc-8e1774e86f95",
+						"exec": [
+							"var data = \"2022-12-31\"",
+							"var today = new Date();",
+							"",
+							" var dd = String(today.getDate()).padStart(2, '0');",
+							" var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!",
+							"var yyyy = today.getFullYear() +1;",
+							"",
+							"today = yyyy + '-' +  mm  + '-' + dd ;",
+							"",
+							"pm.environment.set(\"expired_at\", data + \"T17:42:45Z\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "815ed5f7-17ce-40f2-b6df-cd565c38ec5d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"id\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"condition\": \"used\",\r\n\t\"description\": \"string\",\r\n\t\"expired_at\": \"2021-12-04T17:43:29Z\",\r\n\t\"from\": \"2019-12-04T17:43:29Z\",\r\n\t\"is_defected\": true,\r\n\t\"note_to_seller\": \"string\",\r\n\t\"order_id\": 0,\r\n\t\"to\": \"2021-12-04T17:43:29Z\",\r\n\t\"warranty_until\": \"2021-12-04T17:43:29Z\",\r\n\t\"currency\": \"USD\",\r\n\t\"title\": \"string\",\r\n\t\"total\": 0.01,\r\n\t\"buyer_id\": \"9e600906-c972-4ff8-b7d8-780d1a344573\",\r\n\t\"deal_type\": \"goods\",\r\n\t\"seller_id\": \"abcc4d88-a927-4cde-aece-d5ac33865ac8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/mth/v1/deals",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals"
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "GET/users/deals",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b62d0af-23cb-4a57-a7cc-8e1774e86f95",
+						"exec": [
+							"var data = \"2022-12-31\"",
+							"var today = new Date();",
+							"",
+							" var dd = String(today.getDate()).padStart(2, '0');",
+							" var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!",
+							"var yyyy = today.getFullYear() +1;",
+							"",
+							"today = yyyy + '-' +  mm  + '-' + dd ;",
+							"",
+							"pm.environment.set(\"expired_at\", data + \"T17:42:45Z\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "815ed5f7-17ce-40f2-b6df-cd565c38ec5d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"id\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/mth/v1/users/deals?deal_type=active",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"users",
+						"deals"
+					],
+					"query": [
+						{
+							"key": "deal_type",
+							"value": "active"
+						}
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "GET/users/wallet/privateKey",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b62d0af-23cb-4a57-a7cc-8e1774e86f95",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "815ed5f7-17ce-40f2-b6df-cd565c38ec5d",
+						"exec": [
+							"// var jsonData = pm.response.json();",
+							"// pm.environment.set(\"id\", jsonData.id);",
+							"",
+							"// pm.test(\"Status code is 200\", function () {",
+							"//     pm.response.to.have.status(200);",
+							"// });",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					},
+					{
+						"key": "mth-passphrase",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"private_key\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/mth/v1/users/wallet/privatekey",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"users",
+						"wallet",
+						"privatekey"
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deal price too small (-0.01)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b62d0af-23cb-4a57-a7cc-8e1774e86f95",
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "815ed5f7-17ce-40f2-b6df-cd565c38ec5d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"id\", jsonData.id);",
+							"",
+							"pm.test(\"shouldFailWithPriceToSmall\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"AMOUNT_TOO_SMALL\");",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"condition\": \"used\",\r\n\t\"description\": \"string\",\r\n\t\"expired_at\": \"2019-12-04T17:43:29Z\",\r\n\t\"from\": \"2019-12-04T17:43:29Z\",\r\n\t\"is_defected\": true,\r\n\t\"note_to_seller\": \"string\",\r\n\t\"order_id\": 0,\r\n\t\"to\": \"2019-12-04T17:43:29Z\",\r\n\t\"warranty_until\": \"2019-12-04T17:43:29Z\",\r\n\t\"currency\": \"USD\",\r\n\t\"title\": \"string\",\r\n\t\"total\": -0.01,\r\n\t\"buyer_id\": \"9e600906-c972-4ff8-b7d8-780d1a344573\",\r\n\t\"deal_type\": \"goods\",\r\n\t\"seller_id\": \"abcc4d88-a927-4cde-aece-d5ac33865ac8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/deals",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals"
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deal price min  (0.01)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "724b6231-e8f3-4f00-8308-33da6ef3d048",
+						"exec": [
+							"",
+							"",
+							"var data = \"2022-12-31\"",
+							"var today = new Date();",
+							"",
+							" var dd = String(today.getDate()).padStart(2, '0');",
+							" var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!",
+							"var yyyy = today.getFullYear() +1;",
+							"",
+							"today = yyyy + '-' +  mm  + '-' + dd ;",
+							"",
+							"pm.environment.set(\"expired_at\", data + \"T17:42:45Z\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a60a89ce-0601-4bec-89ce-0bb3ab280b81",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Should return total value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.total).to.eql(0.01);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"condition\": \"used\",\r\n\t\"description\": \"string\",\r\n\t\"expired_at\": \"2021-12-04T17:43:29Z\",\r\n\t\"from\": \"2021-12-04T17:43:29Z\",\r\n\t\"is_defected\": true,\r\n\t\"note_to_seller\": \"string\",\r\n\t\"order_id\": 0,\r\n\t\"to\": \"2021-12-04T17:43:29Z\",\r\n\t\"warranty_until\": \"2021-12-04T17:43:29Z\",\r\n\t\"currency\": \"USD\",\r\n\t\"title\": \"string\",\r\n\t\"total\": 0.01,\r\n\t\"buyer_id\": \"9e600906-c972-4ff8-b7d8-780d1a344573\",\r\n\t\"deal_type\": \"goods\",\r\n\t\"seller_id\": \"abcc4d88-a927-4cde-aece-d5ac33865ac8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/deals",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals"
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deal medium price 5000",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "724b6231-e8f3-4f00-8308-33da6ef3d048",
+						"exec": [
+							"",
+							"",
+							"var data = \"2022-12-31\"",
+							"var today = new Date();",
+							"",
+							" var dd = String(today.getDate()).padStart(2, '0');",
+							" var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!",
+							"var yyyy = today.getFullYear() +1;",
+							"",
+							"today = yyyy + '-' +  mm  + '-' + dd ;",
+							"",
+							"pm.environment.set(\"expired_at\", data + \"T17:42:45Z\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a60a89ce-0601-4bec-89ce-0bb3ab280b81",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"condition\": \"used\",\r\n\t\"description\": \"string\",\r\n\t\"expired_at\": \"2021-12-04T17:43:29Z\",\r\n\t\"from\": \"2021-12-04T17:43:29Z\",\r\n\t\"is_defected\": true,\r\n\t\"note_to_seller\": \"string\",\r\n\t\"order_id\": 0,\r\n\t\"to\": \"2021-12-04T17:43:29Z\",\r\n\t\"warranty_until\": \"2021-12-04T17:43:29Z\",\r\n\t\"currency\": \"USD\",\r\n\t\"title\": \"string\",\r\n\t\"total\": 5000.00,\r\n\t\"buyer_id\": \"9e600906-c972-4ff8-b7d8-780d1a344573\",\r\n\t\"deal_type\": \"goods\",\r\n\t\"seller_id\": \"abcc4d88-a927-4cde-aece-d5ac33865ac8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/deals",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals"
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deal price too big amount (999999999999999.01,)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b62d0af-23cb-4a57-a7cc-8e1774e86f95",
+						"exec": [
+							"var data = \"2022-12-31\"",
+							"var today = new Date();",
+							"",
+							" var dd = String(today.getDate()).padStart(2, '0');",
+							" var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!",
+							"var yyyy = today.getFullYear() +1;",
+							"",
+							"today = yyyy + '-' +  mm  + '-' + dd ;",
+							"",
+							"pm.environment.set(\"expired_at\", data + \"T17:42:45Z\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "815ed5f7-17ce-40f2-b6df-cd565c38ec5d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"id\", jsonData.id);",
+							"",
+							"pm.test(\"validationErrorPriceToBig\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(\"AMOUNT_TOO_BIG\");",
+							"});",
+							"",
+							"pm.test(\"validationErrorMessagePriceToBig\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"(608) total in body should be less than or equal to 1e+07\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"condition\": \"used\",\r\n\t\"description\": \"string\",\r\n\t\"expired_at\": \"2019-12-04T17:43:29Z\",\r\n\t\"from\": \"2019-12-04T17:43:29Z\",\r\n\t\"is_defected\": true,\r\n\t\"note_to_seller\": \"string\",\r\n\t\"order_id\": 0,\r\n\t\"to\": \"2019-12-04T17:43:29Z\",\r\n\t\"warranty_until\": \"2019-12-04T17:43:29Z\",\r\n\t\"currency\": \"USD\",\r\n\t\"title\": \"string\",\r\n\t\"total\": 999999999999999.01,\r\n\t\"buyer_id\": \"9e600906-c972-4ff8-b7d8-780d1a344573\",\r\n\t\"deal_type\": \"goods\",\r\n\t\"seller_id\": \"abcc4d88-a927-4cde-aece-d5ac33865ac8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/deals",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals"
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deals price max 9999999.01",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b62d0af-23cb-4a57-a7cc-8e1774e86f95",
+						"exec": [
+							"var data = \"2022-12-31\"",
+							"var today = new Date();",
+							"",
+							" var dd = String(today.getDate()).padStart(2, '0');",
+							" var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!",
+							"var yyyy = today.getFullYear() +1;",
+							"",
+							"today = yyyy + '-' +  mm  + '-' + dd ;",
+							"",
+							"pm.environment.set(\"expired_at\", data + \"T17:42:45Z\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "815ed5f7-17ce-40f2-b6df-cd565c38ec5d",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"condition\": \"used\",\r\n\t\"description\": \"string\",\r\n\t\"expired_at\": \"2020-12-04T17:43:29Z\",\r\n\t\"from\": \"2020-12-04T17:43:29Z\",\r\n\t\"is_defected\": true,\r\n\t\"note_to_seller\": \"string\",\r\n\t\"order_id\": 0,\r\n\t\"to\": \"2020-12-04T17:43:29Z\",\r\n\t\"warranty_until\": \"2020-12-04T17:43:29Z\",\r\n\t\"currency\": \"USD\",\r\n\t\"title\": \"string\",\r\n\t\"total\": 9999999.01,\r\n\t\"buyer_id\": \"9e600906-c972-4ff8-b7d8-780d1a344573\",\r\n\t\"deal_type\": \"goods\",\r\n\t\"seller_id\": \"abcc4d88-a927-4cde-aece-d5ac33865ac8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/deals",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals"
+					]
+				},
+				"description": "sian"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deals price near upper bound 2147483646",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b62d0af-23cb-4a57-a7cc-8e1774e86f95",
+						"exec": [
+							"var data = \"2022-12-31\"",
+							"var today = new Date();",
+							"",
+							" var dd = String(today.getDate()).padStart(2, '0');",
+							" var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!",
+							"var yyyy = today.getFullYear() +1;",
+							"",
+							"today = yyyy + '-' +  mm  + '-' + dd ;",
+							"",
+							"pm.environment.set(\"expired_at\", data + \"T17:42:45Z\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "815ed5f7-17ce-40f2-b6df-cd565c38ec5d",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"condition\": \"used\",\r\n\t\"description\": \"string\",\r\n\t\"expired_at\": \"2020-12-04T17:43:29Z\",\r\n\t\"from\": \"2020-12-04T17:43:29Z\",\r\n\t\"is_defected\": true,\r\n\t\"note_to_seller\": \"string\",\r\n\t\"order_id\": 0,\r\n\t\"to\": \"2020-12-04T17:43:29Z\",\r\n\t\"warranty_until\": \"2020-12-04T17:43:29Z\",\r\n\t\"currency\": \"USD\",\r\n\t\"title\": \"string\",\r\n\t\"total\": 2147483646.00,\r\n\t\"buyer_id\": \"9e600906-c972-4ff8-b7d8-780d1a344573\",\r\n\t\"deal_type\": \"goods\",\r\n\t\"seller_id\": \"abcc4d88-a927-4cde-aece-d5ac33865ac8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.monetha.io/mth/v1/deals",
+					"protocol": "https",
+					"host": [
+						"api",
+						"monetha",
+						"io"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals"
+					]
+				},
+				"description": "mth"
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deal id trash",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f4fe169-fb07-47fa-9c4f-ee7c7ddca173",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"reason\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/mth/v1/deals/{{id}}/trash",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals",
+						"{{id}}",
+						"trash"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST/deal id cancel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f4fe169-fb07-47fa-9c4f-ee7c7ddca173",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{Authorization}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"reason\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/mth/v1/deals/{{id}}/cancel",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mth",
+						"v1",
+						"deals",
+						"{{id}}",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "424d882d-46a6-482b-bcc3-c51c94545d0b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a7d754a5-0905-424d-bb3d-a56963897f91",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
